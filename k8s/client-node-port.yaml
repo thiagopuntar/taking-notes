@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: client-node-port
+spec:
+  type: NodePort
+  ports:
+    - port: 3050 # the way another pod could interact with targetPod
+      targetPort: 3000 # port inside of the pod that is being exposed. Same as containerPort
+      nodePort: 31515 # the port exposed to outside (random between 30000-32767)
+  selector:
+    component: web
